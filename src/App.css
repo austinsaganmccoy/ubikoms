@@ -59,3 +59,25 @@ body{
         margin-left: 25%;
     }
 }
+
+@media (max-width: 768px){
+   .custom-card{
+       min-width: 350px;
+   }
+
+    .flexbox-container{
+        height:auto;
+    }
+
+    .border-0{
+        width: 100px;
+    }
+
+    .password-field{
+        min-width: 100px;
+    }
+
+    .mobile_btn{
+        text-align: center;
+    }
+}

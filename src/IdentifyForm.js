@@ -40,7 +40,7 @@ class IdentifyForm extends Component {
                     <p><b>SMTP/POP server: </b> {server_url}</p>
                     <p><b>Private key recovery phrase:</b></p>
                     <p>{list}</p>
-                    <p> <a className="btn btn-primary" href={'https://alpha.ubikom.cc:8088/getKey?key_id='+key.key_id}>Download Private Key</a></p>
+                    <p className="mobile_btn"> <a className="btn btn-primary" href={'https://alpha.ubikom.cc:8088/getKey?key_id='+key.key_id}>Download Private Key</a></p>
                 </div>
 
             </div>

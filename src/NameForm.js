@@ -60,8 +60,6 @@ class NameForm extends Component {
 
 
     render() {
-        console.log(this.state.nameAvailable);
-        console.log(this.state.name.length);
         return (
             <div>
                 <div className="custom-card">

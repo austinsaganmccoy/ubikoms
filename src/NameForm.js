@@ -79,28 +79,25 @@ class NameForm extends Component {
                     <form className="form-horizontal" onSubmit={this.handleSubmit}>
                         <div className="form-group row">
                             <label className="control-label col-sm-2" htmlFor="username">Name:</label>
-                            <div className="col-sm-10">
+                            <div className="col-sm-7">
                                 <input type="text"
                                        className="form-control"
                                        name="name"
                                        value={this.state.name}
                                        onChange={this.handleChange.bind(this)}
                                        onKeyUp={this.keyPress}
-                                       placeholder="Enter UserName" />
+                                       placeholder="Enter Name" />
                             </div>
-                            <div className="col-sm-offset-2 col-sm-10">
-                                {this.state.nameError ? <span className="text-danger">Please lengthen this text to 3 characters or more.</span> : ''}
-                            </div>
-                        </div>
-
-                        <div className="form-group row">
-                            <div className="col-sm-offset-2 col-sm-10">
+                            <div className="col-sm-3">
                                 <button type="submit"
                                         className="btn btn-primary"
                                         onClick={this.handleNext.bind(this)}
                                         disabled={ (this.state.nameAvailable && this.state.name.length > 3)  ? false : true }>
                                     Next
                                 </button>
+                            </div>
+                            <div className="col-sm-offset-2 col-sm-10">
+                                {this.state.nameError ? <span className="text-danger">Please lengthen this text to 3 characters or more.</span> : ''}
                             </div>
                         </div>
                     </form>

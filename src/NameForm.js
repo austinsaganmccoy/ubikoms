@@ -8,7 +8,7 @@ class NameForm extends Component {
         this.state = {
             'name' : '',
             'nameError' : false,
-            'nameAvailable' : false,
+            'nameAvailable' : true,
         };
 
         this.handleChange = (e) => {
@@ -97,7 +97,8 @@ class NameForm extends Component {
                                 </button>
                             </div>
                             <div className="col-sm-offset-2 col-sm-10">
-                                {this.state.nameError ? <span className="text-danger">Please lengthen this text to 3 characters or more.</span> : ''}
+                                {this.state.nameError ? <span className="text-danger">Name is too short.</span> : ''} <br/>
+                                {!this.state.nameAvailable ? <span className="text-danger">This name is not available.</span> : ''}
                             </div>
                         </div>
                     </form>

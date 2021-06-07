@@ -9,13 +9,14 @@ class IdentifyForm extends Component {
         this.state = {
             passwordStatus : true,
             isLoading: true,
-            name : this.props.match.params.name,
-            password : this.props.match.params.password,
-            confirmPassword : this.props.match.params.confirmPassword,
+            name : this.props.location.state.name,
+            password : this.props.location.state.password,
+            confirmPassword : this.props.location.state.confirmPassword,
         }
     }
 
     componentDidMount() {
+
         const apiUrl = 'https://alpha.ubikom.cc:8088';
         let self = this;
 
@@ -34,7 +35,14 @@ class IdentifyForm extends Component {
                 self.props.history.push('/');
             })
 
-        self.props.history.push('/identify/'+this.state.name+'/'+this.state.password+'/'+this.state.confirmPassword);
+        self.props.history.push({
+            pathname: '/identify',
+            state: {
+                'name': this.props.location.state.name,
+                'password': this.props.location.state.password,
+                'confirmPassword': this.props.location.state.confirmPassword
+            }
+        });
 
         //if password length > 6 or password and confirm password is same
         /*if(password !== confirmPassword || password.length < 7){
@@ -76,7 +84,12 @@ class IdentifyForm extends Component {
 
         }catch (e) {
             console.log(e);
-            self.props.history.push('/password/'+this.state.name);
+            self.props.history.push({
+                pathname: '/password',
+                state: {
+                    name: this.state.name
+                }
+            })
         }
     }
 

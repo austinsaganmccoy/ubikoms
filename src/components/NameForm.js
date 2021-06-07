@@ -55,7 +55,12 @@ class NameForm extends Component {
     }
 
     handleNext(){
-        this.props.history.push('/password/'+this.state.name);
+        this.props.history.push({
+            pathname: '/password',
+            state: {
+                'name': this.state.name
+            }
+        })
     }
 
 

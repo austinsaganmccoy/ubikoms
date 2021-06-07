@@ -17,7 +17,7 @@ class PasswordForm extends Component {
     componentDidMount() {
         const apiUrl = 'https://alpha.ubikom.cc:8088';
         let self = this;
-        let name = this.props.match.params.name;
+        let name = this.props.location.state.name;
 
         axios.get(apiUrl+'/lookupName',{
             params:{
@@ -61,7 +61,14 @@ class PasswordForm extends Component {
     }
 
     handleNext() {
-        this.props.history.push('/identify/'+this.props.match.params.name+'/'+this.state.password +'/'+this.state.confirmPassword);
+        this.props.history.push({
+            pathname: '/identify',
+            state: {
+                'name': this.props.location.state.name,
+                'password': this.state.password,
+                'confirmPassword': this.state.confirmPassword
+            }
+        })
     }
 
     render() {

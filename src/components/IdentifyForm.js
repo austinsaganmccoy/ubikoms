@@ -107,9 +107,9 @@ class IdentifyForm extends Component {
                             </div>
                         </div>
 
-                        <div className="form-group row">
+                        <div className="form-group row" style={{marginBottom:5}}>
                             <label className="control-label col-sm-4 col-4" htmlFor="username"><b>Password </b></label>
-                            <div className="col-sm-5 col-5">
+                            <div className="col-sm-3 col-5">
                                 <div style={{ display: this.state.passwordStatus === true ? 'none' : 'block' }} className="password-field">
                                     {this.state.data !== undefined && this.state.data !== null && this.state.data.password}
                                 </div>
@@ -136,9 +136,11 @@ class IdentifyForm extends Component {
                             </div>
                         </div>
 
-                        <p className="text-center">
-                            <a className="btn btn-primary" href={`https://alpha.ubikom.cc:8088/getKey?key_id=${this.state.data !== undefined && this.state.data !== null && this.state.data.key_id}`}>Download Private Key</a>
-                        </p>
+                        <div className="form-group row">
+                            <div className="col-sm-offset-4 col-sm-8">
+                                <a className="btn btn-primary" href={`https://alpha.ubikom.cc:8088/getKey?key_id=${this.state.data !== undefined && this.state.data !== null && this.state.data.key_id}`}>Download Private Key</a>
+                            </div>
+                        </div>
 
                     </div>
                 )}

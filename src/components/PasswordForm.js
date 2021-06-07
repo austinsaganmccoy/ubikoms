@@ -75,8 +75,7 @@ class PasswordForm extends Component {
                             Choose your password
                         </h1>
                         <div className="form-group row">
-                            <label className="control-label col-sm-3 mb-10" htmlFor="username">Password:</label>
-                            <div className="col-sm-5 mb-10">
+                            <div className="col-sm-9 mb-10">
                                 <input type="password"
                                        className="form-control"
                                        name="password"
@@ -86,15 +85,14 @@ class PasswordForm extends Component {
                                        placeholder="Enter Password"/>
                             </div>
 
-                            <div className="col-sm-offset-3 col-sm-9">
+                            <div className="col-sm-9">
                                 {this.state.passwordErr ?
                                     <span className="text-danger">Please lengthen this password to 6 characters or more.</span> : ''}
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label className="control-label col-sm-3 mb-10" htmlFor="username">Confirm Password:</label>
-                            <div className="col-sm-5 mb-10">
+                            <div className="col-sm-9 mb-10">
                                 <input type="password"
                                        className="form-control"
                                        name="confirmPassword"
@@ -112,7 +110,7 @@ class PasswordForm extends Component {
                                     Next
                                 </button>
                             </div>
-                            <div className="col-sm-offset-3 col-sm-9">
+                            <div className="col-sm-9">
                                 {this.state.confirmPasswordErr ?
                                     <span className="text-danger">Password doesn't match</span> : ''}
                             </div>

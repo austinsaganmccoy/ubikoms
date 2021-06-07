@@ -22,11 +22,14 @@ class NameForm extends Component {
 
     handleValidation(){
         let name = this.state.name;
-        if(name.length >= 3){
+
+        if(name.length >= 3)
             this.setState({'nameError' : false});
-        }else{
+        else if(name.length > 0 && name.length <= 3)
             this.setState({'nameError' : true });
-        }
+        else  if(name.length === 0)
+            this.setState({'nameError' : false});
+
     }
 
     keyPress(){

@@ -49,8 +49,12 @@ class IdentifyForm extends Component {
 
         }*/
         this.getIdentifyData();
-
-        window.addEventListener('popstate', this.handleOnPopState);
+        if(this.state.isLoading === true)
+            window.addEventListener('popstate', this.handleOnPopState);
+        else
+            window.addEventListener('popstate', function (){
+                this.props.history.push('/');
+            });
 
         window.onclose = () => {
             return "";
@@ -78,7 +82,6 @@ class IdentifyForm extends Component {
         try{
             await axios.get(apiUrl+'/easySetup?name='+this.state.name+'&password='+this.state.password)
                 .then(response => {
-                    console.log(response.data);
                     this.setState({isLoading: false, data:response.data});
                 });
 
@@ -106,7 +109,6 @@ class IdentifyForm extends Component {
 
     handleDownload(){
         window.location.href = 'https://alpha.ubikom.cc:8088/getKey?key_id='+this.state.data.key_id;
-        this.props.history.push('/');
     }
 
     render() {

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
 
+
 class PasswordForm extends Component {
     constructor(props) {
         super(props);
@@ -87,7 +88,7 @@ class PasswordForm extends Component {
 
                             <div className="col-sm-9">
                                 {this.state.passwordErr ?
-                                    <span className="text-danger">Please lengthen this password to 6 characters or more.</span> : ''}
+                                    <span className="text-danger">Password is too short.</span> : ''}
                             </div>
                         </div>
 

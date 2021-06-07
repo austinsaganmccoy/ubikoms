@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import {Button, Spinner} from "react-bootstrap";
+import PropTypes from "prop-types";
 
 class IdentifyForm extends Component {
     constructor(props){
@@ -41,6 +42,31 @@ class IdentifyForm extends Component {
         }*/
         this.getIdentifyData();
 
+        window.addEventListener('popstate', this.handleOnPopState);
+
+        window.onbeforeunload = () => {
+            console.log('enter', window.location.href.split("/"));
+            // window.location.href = "/";
+            this.props.history.replace('/');
+            // return "";
+        }
+
+        window.onclose = () => {
+            return "";
+        }
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener('popstate', this.handleOnPopState);
+    }
+
+    handleOnPopState = () => {
+        var r = window.confirm("If you close this window, your chosen name will be lost and you will have to chose a new one");
+        if (r === true) {
+            this.props.history.push('/');
+        } else {
+
+        }
     }
 
     async getIdentifyData(){
@@ -84,7 +110,7 @@ class IdentifyForm extends Component {
                             role="status"
                             aria-hidden="true"
                         />
-                        Please wait while your Identify is generated <br/>
+                        <span style={{marginLeft:15}}>Please wait while your Identify is generated </span> <br/>
                         It may take a minute, please don't close the window.
                     </Button>
                 )}
@@ -149,4 +175,8 @@ class IdentifyForm extends Component {
     }
 }
 
+IdentifyForm.propTypes = {
+    history: PropTypes.object,
+}
 export default IdentifyForm;
+

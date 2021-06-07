@@ -19,6 +19,7 @@ class NameForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+
     handleValidation(){
         let name = this.state.name;
         if(name.length >= 3){

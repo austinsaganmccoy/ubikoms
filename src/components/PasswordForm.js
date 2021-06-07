@@ -51,10 +51,7 @@ class PasswordForm extends Component {
         }else{
             this.setState({'passwordErr' : true });
         }
-    }
 
-    keyPressPasswordConfirm() {
-        let password = this.state.password;
         let confirm_pass = this.state.confirmPassword;
         if(password !== confirm_pass){
             this.setState({'confirmPasswordErr' : true});
@@ -75,6 +72,7 @@ class PasswordForm extends Component {
                         <h1 className="card-title">
                             Choose your password
                         </h1>
+
                         <div className="form-group row">
                             <div className="col-sm-9 mb-10">
                                 <input type="password"
@@ -99,7 +97,7 @@ class PasswordForm extends Component {
                                        name="confirmPassword"
                                        value={this.state.confirmPassword}
                                        onChange={this.handleChange.bind(this)}
-                                       onKeyUp={this.keyPressPasswordConfirm.bind(this)}
+                                       onKeyUp={this.keyPressPassword.bind(this)}
                                        placeholder="Enter Confirm Password"/>
                             </div>
                             <div className="col-sm-3 mb-10">

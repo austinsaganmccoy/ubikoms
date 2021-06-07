@@ -44,13 +44,6 @@ class IdentifyForm extends Component {
 
         window.addEventListener('popstate', this.handleOnPopState);
 
-        window.onbeforeunload = () => {
-            console.log('enter', window.location.href.split("/"));
-            // window.location.href = "/";
-            this.props.history.replace('/');
-            // return "";
-        }
-
         window.onclose = () => {
             return "";
         }
@@ -77,6 +70,7 @@ class IdentifyForm extends Component {
         try{
             await axios.get(apiUrl+'/easySetup?name='+this.state.name+'&password='+this.state.password)
                 .then(response => {
+                    console.log(response.data);
                     this.setState({isLoading: false, data:response.data});
                 });
 
@@ -97,8 +91,12 @@ class IdentifyForm extends Component {
 
     }
 
-    render() {
+    handleDownload(){
+        window.location.href = 'https://alpha.ubikom.cc:8088/getKey?key_id='+this.state.data.key_id;
+        this.props.history.push('/');
+    }
 
+    render() {
         return (
             <div>
                 {this.state.isLoading === true && (
@@ -164,7 +162,7 @@ class IdentifyForm extends Component {
 
                         <div className="form-group row">
                             <div className="col-sm-offset-4 col-sm-8">
-                                <a className="btn btn-primary" href={`https://alpha.ubikom.cc:8088/getKey?key_id=${this.state.data !== undefined && this.state.data !== null && this.state.data.key_id}`}>Download Private Key</a>
+                                <a className="btn btn-primary" onClick={this.handleDownload.bind(this)}>Download Private Key</a>
                             </div>
                         </div>
 

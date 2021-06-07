@@ -111,7 +111,7 @@ class IdentifyForm extends Component {
                             aria-hidden="true"
                         />
                         <span style={{marginLeft:15}}>Please wait while your Identify is generated </span> <br/>
-                        It may take a minute, please don't close the window.
+                        It may take a minute, please don't close this window.
                     </Button>
                 )}
                 {this.state.isLoading !== true && (

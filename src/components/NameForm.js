@@ -5,9 +5,9 @@ class NameForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            'name' : '',
-            'nameError' : false,
-            'nameAvailable' : true
+            name : '',
+            nameError : false,
+            nameAvailable : true,
         };
 
         this.handleChange = (e) => {
@@ -31,6 +31,7 @@ class NameForm extends Component {
             this.setState({'nameError' : false});
 
     }
+
 
     keyPress(){
         this.handleValidation();
@@ -74,6 +75,7 @@ class NameForm extends Component {
                     <h1 className="card-title">
                         Get your Ubikom Identity
                     </h1>
+
                     <p>
                         dummy content,dummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy content
                         dummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentdummy contentd

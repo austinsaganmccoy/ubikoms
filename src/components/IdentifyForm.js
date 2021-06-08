@@ -44,33 +44,40 @@ class IdentifyForm extends Component {
             }
         });
 
-        //if password length > 6 or password and confirm password is same
-        /*if(password !== confirmPassword || password.length < 7){
-
-        }*/
         this.getIdentifyData();
-        if(this.state.isLoading === true)
-            window.addEventListener('popstate', this.handleOnPopState);
-        else
-            window.addEventListener('popstate', function (){
-                this.props.history.push('/');
-            });
+        window.addEventListener('popstate', this.handleOnPopState);
 
-        window.onclose = () => {
-            return "";
-        }
+        window.addEventListener("beforeunload", (ev) =>
+        {
+            ev.preventDefault();
+            if(this.state.isLoading === true)
+            {
+                return ev.returnValue = 'Are you sure you want to close?';
+            }
+        });
     }
 
     componentWillUnmount(){
         window.removeEventListener('popstate', this.handleOnPopState);
+        window.removeEventListener('beforeunload',(ev) => {
+            ev.preventDefault();
+        });
+
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
     }
 
     handleOnPopState = () => {
-        var r = window.confirm("If you close this window, your chosen name will be lost and you will have to chose a new one");
-        if (r === true) {
-            this.props.history.push('/');
-        } else {
+        if(this.state.isLoading === true){  // if waiting bar true
+            var r = window.confirm("If you close this window, your chosen name will be lost and you will have to chose a new one");
 
+            if (r === true) {
+                this.props.history.push('/');
+            }
+        }else{
+            this.props.history.push('/');
         }
     }
 
@@ -107,9 +114,6 @@ class IdentifyForm extends Component {
 
     }
 
-    handleDownload(){
-        window.location.href = 'https://alpha.ubikom.cc:8088/getKey?key_id='+this.state.data.key_id;
-    }
 
     render() {
         return (
@@ -171,13 +175,13 @@ class IdentifyForm extends Component {
                         <div className="form-group row">
                             <label className="control-label col-sm-4" htmlFor="username"><b>Private key recovery phrase </b></label>
                             <div className="col-sm-8">
-                                {this.state.data !== undefined && this.state.data !== null && this.state.data.key_mnemonic.map((numbers) => <span key={"key"+numbers}>{numbers}, </span>)}
+                                {this.state.data !== undefined && this.state.data !== null && this.state.data.key_mnemonic.map((numbers) => <span key={`key_${numbers}`}>{numbers}, </span>)}
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <div className="col-sm-offset-4 col-sm-8">
-                                <a className="btn btn-primary" onClick={this.handleDownload.bind(this)}>Download Private Key</a>
+                                <a className="btn btn-primary" href={`https://alpha.ubikom.cc:8088/getKey?key_id=${this.state.data !== undefined && this.state.data !== null && this.state.data.key_id}`}>Download Private Key</a>
                             </div>
                         </div>
 
